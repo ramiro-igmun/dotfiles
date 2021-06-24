@@ -1,0 +1,44 @@
+# Base16 OneDark 256 - alacritty color config
+# Lalit Magant (http://github.com/tilal6991)
+colors:
+  # Default colors
+  primary:
+    # background: '0x282c34'
+    background: '#0f1114'
+    # foreground: '0xabb2bf'
+    foreground: '#ccd2db'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '#282c34'
+    cursor: '#abb2bf'
+
+  # Normal colors
+  normal:
+    black:   '#282c34'
+    red:     '#e06c75'
+    green:   '#98c379'
+    yellow:  '#e5c07b'
+    blue:    '#61afef'
+    magenta: '#c678dd'
+    cyan:    '#56b6c2'
+    white:   '#abb2bf'
+
+  # Bright colors
+  bright:
+    black:   '#545862'
+    red:     '#e06c75'
+    green:   '#98c379'
+    yellow:  '#e5c07b'
+    blue:    '#61afef'
+    magenta: '#c678dd'
+    cyan:    '#56b6c2'
+    white:   '#c8ccd4'
+
+  indexed_colors:
+    - { index: 16, color: '#d19a66' }
+    - { index: 17, color: '#be5046' }
+    - { index: 18, color: '#353b45' }
+    - { index: 19, color: '#3e4451' }
+    - { index: 20, color: '#565c64' }
+    - { index: 21, color: '#b6bdca' }
