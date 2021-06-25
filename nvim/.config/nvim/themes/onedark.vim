@@ -1,18 +1,4 @@
-" KEYMAPS
-inoremap jj <Esc>
-
-" PLUGINS
-call plug#begin(stdpath('data') . '/plugged')
-
-Plug 'joshdick/onedark.vim'
-
-call plug#end()
-
-set number
-set tabstop=2 shiftwidth=2 expandtab
-
-""" ONEDARK THEME SPECIFIC CONFIG
-" onedark.vim override: Don't set a background color when running in a terminal;
+"" onedark.vim override: Don't set a background color when running in a terminal;
 if (has("autocmd") && !has("gui_running"))
   augroup colorset
     autocmd!
@@ -45,4 +31,4 @@ let g:onedark_termcolors=256
 " OPTIONS
 syntax enable
 colorscheme onedark
-""" END ONEDARK THEME CONFIG
+
