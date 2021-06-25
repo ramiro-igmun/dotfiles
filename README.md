@@ -1,8 +1,42 @@
-# linux-setup
+# Distro
 Setup and config files for my linux dev environment.
 
 - **Distro**: *EndeavorOS* (Arch Linux fork)
 - **Window Manager**: *I3WM*, light tiling window manager
+
+## Packages
+
+  - Filemanagers: *thunar* and *ranger*
+  - Images: *feh* and *nitrogen*
+  - Editors: *vscode* and *neovim*
+  - Browser: *firefox-developers-edition*
+  - Terminal: *alacritty*
+  
+### Bash addons
+  - Bash prompt: *starship*
+  - Coloring ``ls``: *lsd*
+  - *tree* (stdout folder structure)
+
+### Programming
+  - jvm skd manager *sdkman*
+  - node version manager *nvm*
+  - IDE *Intellij Idea* 
+  - Rest client *Postman* 
+
+### Others
+  - Backlight control *light*
+  - Neovim file manger [*vim-plug*](https://github.com/junegunn/vim-plug): 
+    ```
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    ```  
+
+### Themes
+  - **One Dark**: for alacritty, nvim, vscode and IntellijIdea 
+
+### Fonts
+  - Noto Sans: As global GTK font
+  - Fira Code Nerd: For Editors, Terminal and IDE
 
 ### Backlight fix
 1. Install light package 
