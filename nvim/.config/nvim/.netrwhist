@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/usr/share/nvm'
 let g:netrw_dirhist_2='/home/ramiro/Ginzo/ecovinal'
 let g:netrw_dirhist_1='/home/ramiro/.config/i3'

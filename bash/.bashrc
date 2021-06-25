@@ -7,6 +7,9 @@
 
 [[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
 
+# Load environment variables
+[[ -f ~/.config/bash/bashenv ]] && . ~/.config/bash/bashenv
+
 _set_my_PS1() {
     PS1='[\u@\h \W]\$ '
     if [ "$(whoami)" = "liveuser" ] ; then
@@ -197,8 +200,6 @@ eval "$(starship init bash)"
 export SDKMAN_DIR="/home/ramiro/.sdkman"
 [[ -s "/home/ramiro/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ramiro/.sdkman/bin/sdkman-init.sh"
 
-# Set up Node Version Manager
+# Set up nvm
 source /usr/share/nvm/init-nvm.sh
 
-# Add to path
-export PATH=$PATH:/home/ramiro/.config

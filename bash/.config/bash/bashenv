@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export BROWSER=firefox-developer-edition
+export PATH=$PATH:/home/ramiro/.config/JetBrains
+export TERM=alacritty
+export VISUAL=nvim
