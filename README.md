@@ -11,6 +11,7 @@ Setup and config files for my linux dev environment.
   - Editors: *vscode* and *neovim*
   - Browser: *firefox-developers-edition*
   - Terminal: *alacritty*
+  - Calendar: *calcurse*
   
 ### Bash addons
   - Bash prompt: *starship*
@@ -22,6 +23,7 @@ Setup and config files for my linux dev environment.
   - node version manager *nvm*
   - IDE *Intellij Idea* 
   - Rest client *Postman* 
+  - *Docker*
 
 ### Others
   - Backlight control *light*
