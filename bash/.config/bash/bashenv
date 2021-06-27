@@ -1,6 +1,10 @@
 #!/bin/sh
 
+# Default programs
 export BROWSER=firefox-developer-edition
-export PATH=$PATH:/home/ramiro/.config/JetBrains
 export TERM=alacritty
 export VISUAL=nvim
+export EDITOR=nvim
+
+# Add the directory with the scripts to exec jetbrains apps to the path
+export PATH=$PATH:/home/ramiro/.config/JetBrains

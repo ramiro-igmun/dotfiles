@@ -7,9 +7,6 @@
 
 [[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
 
-# Load environment variables
-[[ -f ~/.config/bash/bashenv ]] && . ~/.config/bash/bashenv
-
 _set_my_PS1() {
     PS1='[\u@\h \W]\$ '
     if [ "$(whoami)" = "liveuser" ] ; then
