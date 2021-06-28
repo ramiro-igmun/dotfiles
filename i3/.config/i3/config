@@ -405,6 +405,7 @@ set $darkgrey		#383c4a
 set $grey		#b0b5bd
 set $mediumgrey		#8b8b8b
 set $yellowbrown	#e1b700
+set $moredarkgrey  #252936
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
@@ -438,7 +439,7 @@ strip_workspace_name yes
 
 		    colors {
 		    separator          $purple
-		    background         $darkgrey
+		    background         $moredarkgrey
 		    statusline         $white
 #                          		border 		        bg		txt		indicator
 		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
