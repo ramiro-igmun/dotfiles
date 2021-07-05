@@ -177,6 +177,11 @@ _Pacdiff() {
     fi
 }
 
+# start intellij from terminal, dump all stdout to /dev/null and run it on the background
+ij() {
+ idea $1 > /dev/null 2>&1 & 
+}
+
 #------------------------------------------------------------
 
 ## Aliases for the functions above.
@@ -187,7 +192,7 @@ _Pacdiff() {
 # alias pacdiff=_Pacdiff
 ################################################################################
 
-neofetch
+# neofetch
 
 ## Starship config
 export STARSHIP_CONFIG=~/.config/starship/config.toml
