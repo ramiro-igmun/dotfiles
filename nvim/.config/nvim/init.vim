@@ -1,5 +1,6 @@
 " KEYMAPS
 inoremap jj <Esc>
+let mapleader = ' '
 
 " PLUGINS
 call plug#begin(stdpath('data') . '/plugged')
@@ -46,3 +47,4 @@ let g:onedark_termcolors=256
 syntax enable
 colorscheme onedark
 """ END ONEDARK THEME CONFIG
+autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
