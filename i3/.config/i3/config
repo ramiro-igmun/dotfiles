@@ -2,7 +2,7 @@
 # This file is a modified version based on default i3-config-wizard config
 # source is available here:
 # https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
-# Maintainer: joekamprad [joekamprad@endeavouros.com] 
+# Maintainer: joekamprad [joekamprad@endeavouros.com]
 # https://endeavouros.com
 #
 # --> to update this run the following command (will backup existing setup file)
@@ -47,7 +47,7 @@ workspace_layout default
 # extra options for windows: #
 ##############################
 
-#border indicator on windows: 
+#border indicator on windows:
 new_window pixel 2
 
 # thin borders
@@ -167,7 +167,7 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec $term #-e bash -c "neofetch && bash"  
+bindsym $mod+Return exec $term #-e bash -c "neofetch && bash"
 
 # kill focused window
 bindsym $mod+c kill
@@ -308,7 +308,7 @@ set $ws9 "9"
 set $ws10 "10"
 
 # use workspaces on different displays:
-# where you have to replace VGA-0/HDMI-0 with the names for your displays 
+# where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
 #workspace $ws1 output VGA-0
 #workspace $ws2 output VGA-0
@@ -337,13 +337,13 @@ for_window [class=(?i)firefox] focus
 
 # start an instance of the terminal that will be a dropdown terminal
 for_window [instance="dropdown"] floating enable, resize set 1000 800, move scratchpad, sticky enable
-exec --no-startup-id $term --class dropdown 
+exec --no-startup-id $term --class dropdown
 
 #get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # dex execute .desktop files
-# keep in mind that it can cause issues 
+# keep in mind that it can cause issues
 # when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
 # in this cases better disable dex and use manual starting apps using xdg/autostart
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
@@ -351,7 +351,7 @@ exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 # num lock activated
 #exec --no-startup-id numlockx on
 
-# start conky: 
+# start conky:
 #exec_always --no-startup-id conky
 
 # start a script to setup displays
@@ -361,7 +361,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 # start blueberry app for managing bluetooth devices from tray:
 exec --no-startup-id blueberry-tray
 
-#transparency 
+#transparency
 #exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 exec --no-startup-id picom -CGb --experimental-backends
 
@@ -403,8 +403,8 @@ exec_always --no-startup-id autotiling
 ######################################
 # color settings for bar and windows #
 ######################################
- 
-# Define colors variables: 
+
+# Define colors variables:
 set $darkbluetrans	#08052be6
 set $darkblue		#08052b
 set $lightblue		#5294e2
@@ -430,25 +430,25 @@ client.urgent		    $urgentred	$urgentred	$white		$urgentred		$urgentred
 # bar settings (input comes from i3blocks) #
 ############################################
 
-# Start i3bar to display a workspace bar 
+# Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-		font pango: FuraCode Nerd Font Bold 10 
+		font pango: FuraCode Nerd Font Bold 10
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position top 
-#	    	i3bar_command i3bar --transparency
+		position top
+#	  	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
 		    tray_output primary
 		    tray_padding 0
 
-# When strip_workspace_numbers is set to yes, 
-# any workspace that has a name of the form 
+# When strip_workspace_numbers is set to yes,
+# any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
 strip_workspace_numbers no
 strip_workspace_name yes
 
-		    colors {
+	colors {
 		    separator          $purple
 		    background         $moredarkgrey
 		    statusline         $white
@@ -456,7 +456,7 @@ strip_workspace_name yes
 		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
 		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
 		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-		urgent_workspace	$urgentred	    	$urgentred	$white		$purple 
+		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
 	}
 }
 
@@ -466,15 +466,15 @@ strip_workspace_name yes
 # https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
 # #08052be6 --> e6=90%
 
-# bar {	
+# bar {
 #	font pango:Noto Sans Regular 9, FontAwesome 9
 #	status_command i3blocks -c ~/.config/i3/i3blocks-2.conf
 #	i3bar_command i3bar --transparency
 #	output HDMI-0
 #	position bottom
 #
-# When strip_workspace_numbers is set to yes, 
-# any workspace that has a name of the form 
+# When strip_workspace_numbers is set to yes,
+# any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
 #strip_workspace_numbers yes
 ##strip_workspace_name no
@@ -487,7 +487,7 @@ strip_workspace_name yes
 #		focused_workspace	$lighterblue	$lighterblue	$darkblue	$purple
 #		active_workspace	$lightdblue	$lightdblue	$darkblue	$purple
 #		inactive_workspace	$darkblue	$darkblue	$lightdblue	$purple
-#		urgent_workspace	$urgentred	$urgentred	$white		$purple 
+#		urgent_workspace	$urgentred	$urgentred	$white		$purple
 #	}
 #}
 
@@ -500,7 +500,7 @@ strip_workspace_name yes
 bindsym $mod+d exec rofi -modi drun -show drun -display-drun "Apps : " -line-padding 4 \
                 -columns 2 -padding 50 -hide-scrollbar \
                 -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
-                
+
 bindsym F9 exec rofi -modi drun -show drun -display-drun "Apps : " -line-padding 4 \
                 -columns 2 -padding 30 -hide-scrollbar \
                 -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
