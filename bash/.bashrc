@@ -30,11 +30,13 @@ ShowInstallerIsoInfo() {
     fi
 }
 
- alias ls='lsd'                   # alias to use lsd app to colorize the output 
+# Alias to use lsd app to colorize the output
+ alias ls='lsd'
  alias l='ls -l'
  alias la='ls -a'
  alias ll='ls -la'
 
+# If the user is root, ommit the rest of the file
 [[ "$(whoami)" = "root" ]] && return
 
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
@@ -179,7 +181,7 @@ _Pacdiff() {
 
 # start intellij from terminal, dump all stdout to /dev/null and run it on the background
 ij() {
- idea $1 > /dev/null 2>&1 & 
+ idea $1 > /dev/null 2>&1 &
 }
 
 #------------------------------------------------------------
@@ -203,5 +205,5 @@ export SDKMAN_DIR="/home/ramiro/.sdkman"
 [[ -s "/home/ramiro/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ramiro/.sdkman/bin/sdkman-init.sh"
 
 # Set up nvm
-source /usr/share/nvm/init-nvm.sh
+[[ -s "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
 

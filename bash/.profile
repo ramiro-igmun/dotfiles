@@ -4,7 +4,7 @@
 
 # if shell is BASH source bashrc
 if [ -n "$BASH" ] ;then
-  [ -r ~/.bashrc] && . ~/.bashrc
+  [ -r "~/.bashrc" ] && . ~/.bashrc
 fi
 
 # Load environment variables
