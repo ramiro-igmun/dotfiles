@@ -1,12 +1,11 @@
 #
-# .profile runs on display manger login. Environment variables are set here.
+# .profile runs on display manger login and may be run by differents shells on login.
 #
 
-# if shell is BASH source bashrc
+# If shell is BASH source bash_profile else load environment variables
 if [ -n "$BASH" ] ;then
-  [ -r "~/.bashrc" ] && . ~/.bashrc
+  [ -r ~/.bash_profile ] && . ~/.bash_profile
+else
+  [[ -f ~/.config/bash/bashenv ]] && . ~/.config/bash/bashenv
 fi
-
-# Load environment variables
-[[ -f ~/.config/bash/bashenv ]] && . ~/.config/bash/bashenv
 

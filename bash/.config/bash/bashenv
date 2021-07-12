@@ -2,7 +2,6 @@
 
 # Default programs
 export BROWSER=firefox-developer-edition
-export TERM=alacritty
 export TERMINAL=alacritty
 export VISUAL=nvim
 export EDITOR=nvim
