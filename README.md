@@ -66,3 +66,65 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
     ```
     ssh-keygen -t rsa -b 4096 -C "riglesias@ginzo.tech"
     ```
+
+### PACKAGE LIST FOR CLEAN INSTALL
+  - **System**
+    - NetworkManager
+    - network-manager-applet (network manager tray)
+    - xorg-server
+    - xorg-xinit (create .xinitrc and edit the last line to execute WM on startx -> 'exec i3')
+    - install a system font (ej. ttf-dejavu)
+    - Dunst (notifications)
+    - amd-ucode (microcode for amd -> see arch wiki)
+    - arandr (xrandr GUI for display management)
+    - xclip (clipboard nvim integration)
+  - **Fonts**
+    - Noto Sans
+    - FiraCode Nerd Font
+  - **WM**
+    - i3-gaps
+    - i3-lock
+    - i3blocks(optional)
+  - **Terminal**
+    - kitty
+  - **Utils**
+    - git
+  - **Audio**
+    - Alsa:
+        - alsa-utils
+        - alsa-plugins ??
+    - pulseaudio
+    - pavucontrol
+  - **AUR**
+    - paru
+      ```
+      git clone https://aur.archlinux.org/paru.git
+      cd paru
+      makepkg -si
+      ```
+  - **Editor**
+    - neovim
+      - Run the following to install plugin manager:
+      ```
+      sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+      ```  
+    - vscode
+    - intelliJ
+  - **Others**
+    - neofetch
+    - dmenu
+    - rofi
+
+### ** TODO **
+- Filemanagers: ranger?? pcmanfm??
+- Calendar: calcurse??
+- Icons??
+- Install nvim pluginmanager
+- rofi and dunst themes?? config files from dotfiles?
+- Alternative browser to firefox??
+- Bitwarden dmenu client??
+- Picom
+- xclip
+- zsh install, config...

@@ -1,5 +1,7 @@
 " BASIC
 set nocompatible
+" Scroll activates 3 lines before reaching edge
+set scrolloff=3
 
 " PLUGINS
 call plug#begin(stdpath('data') . '/plugged')
@@ -10,6 +12,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'ap/vim-css-color'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 

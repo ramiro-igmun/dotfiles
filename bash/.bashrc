@@ -22,24 +22,8 @@ shopt -s autocd
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
-# Alias to use lsd app to colorize the output
-alias ls="lsd"
-alias l="ls -l"
-alias la="ls -a"
-alias ll="ls -la"
-
-alias vi="nvim"
-
-# Git aliases
-alias g="git"
-alias gs="git status"
-alias ga="g add"
-alias gaa="ga -A"
-alias gc="g commit -m"
-alias grs="g restore --staged"
-alias gps="g push"
-alias gp="g pull"
-
+# Source aliases
+[[ -f ~/.config/bash/aliases ]] && . ~/.config/bash/aliases
 
 # start intellij from terminal, dump all stdout to /dev/null and run it on the background
 ij() {
