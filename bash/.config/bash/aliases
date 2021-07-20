@@ -1,0 +1,20 @@
+#!usr/bin/env bash
+
+# Alias to use lsd app to colorize the output
+alias ls="lsd"
+alias l="ls -l"
+alias la="ls -a"
+alias ll="ls -la"
+
+alias vi="nvim"
+
+# Git aliases
+alias g="git"
+alias gs="git status"
+alias ga="g add"
+alias gaa="ga -A"
+alias gc="g commit -m"
+alias grs="g restore --staged"
+alias gp="g push"
+alias gpl="g pull"
+
