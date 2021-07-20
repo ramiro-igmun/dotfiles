@@ -2,7 +2,7 @@
 add_newline = false
 
 [character]
-success_symbol = "[➜](bold green) "
+success_symbol = "[❯](bold green) "
 error_symbol = "[✗](bold red) "
 
 #[username]
@@ -43,7 +43,7 @@ format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [cmd_duration]
-format = "[⏱ $duration]($style)"
+format = "[ ⏱ $duration ]($style)"
 
 [conda]
 symbol = " "
