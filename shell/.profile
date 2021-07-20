@@ -6,6 +6,6 @@
 if [ -n "$BASH" ] ;then
   [ -r ~/.bash_profile ] && . ~/.bash_profile
 else
-  [[ -f ~/.config/bash/env ]] && . ~/.config/bash/env
+  [[ -f ~/.config/shell/env ]] && . ~/.config/shell/env
 fi
 

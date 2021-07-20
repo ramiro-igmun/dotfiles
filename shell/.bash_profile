@@ -3,7 +3,7 @@
 #
 
 # Set environment variables
-[[ -f ~/.config/bash/env ]] && . ~/.config/bash/env
+[[ -f ~/.config/shell/env ]] && . ~/.config/shell/env
 
 # Source bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc
