@@ -6,7 +6,7 @@ setopt interactive_comments
 
 # Install zsh-async if it’s not present
 if [[ ! -a ~/.config/shell/.zsh-async ]]; then
-  git clone git@github.com:mafredri/zsh-async.git ~/.config/shell/.zsh-async
+  git clone https://github.com/mafredri/zsh-async.git ~/.config/shell/.zsh-async
 fi
 source ~/.config/shell/.zsh-async/async.zsh
 
