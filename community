@@ -79,3 +79,5 @@ xorg-xinput
 xorg-xkill
 xorg-xrandr
 zsh
+zsh-completions
+zsh-syntax-highlighting

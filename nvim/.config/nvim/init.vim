@@ -11,10 +11,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'ap/vim-css-color'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
+
+set termguicolors
+lua require'colorizer'.setup()
 
 " source the configuration for the theme
 source $HOME/.config/nvim/themes/onedark.vim
