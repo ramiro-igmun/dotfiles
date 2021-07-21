@@ -4,6 +4,12 @@ setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 
+# Install zsh-async if it’s not present
+if [[ ! -a ~/.config/shell/.zsh-async ]]; then
+  git clone git@github.com:mafredri/zsh-async.git ~/.config/shell/.zsh-async
+fi
+source ~/.config/shell/.zsh-async/async.zsh
+
 # History in cache directory:
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -74,3 +80,17 @@ eval "$(starship init zsh)"
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/ramiro/.sdkman"
+[[ -s "/home/ramiro/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ramiro/.sdkman/bin/sdkman-init.sh"
+
+## Set up nvm
+load_nvm() {
+  [[ -s "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
+}
+
+# Initialize worker
+async_start_worker nvm_worker -n
+async_register_callback nvm_worker load_nvm
+async_job nvm_worker sleep 0.1
