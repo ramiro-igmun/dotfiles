@@ -247,6 +247,9 @@ bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace.sh
 # toggle show/hide dropdown terminal
 bindsym $mod+u [instance="dropdown"] scratchpad show, move position center
 
+# swap workspaced between two monitors
+bindsym $mod+Shift+s exec ~/.config/i3/scripts/display_swap.sh
+
 ## Multimedia Keys
 
 # volume
