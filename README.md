@@ -117,6 +117,34 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
     - dmenu
     - rofi
 
+  - **Services active**
+    - alsa-restore.service (Sound)
+    - dbus.service
+    - getty@tty1.service
+    - kmod-static-nodes.service
+    - lvm2-monitor.service (for logical volume management. Better disable?)
+    - NetworkManager.service
+    - ntpd.service (Syncronize time)
+    - polkit.service (Control system wide priviledges for communication between programs)
+    - rtkit-daemon.service (Used by pulseaudio)
+    - systemd-journal-flush.service
+    - systemd-journald.service
+    - systemd-logind.service
+    - systemd-modules-load.service
+    - systemd-random-seed.service
+    - systemd-remount-fs.service
+    - systemd-sysctl.service
+    - systemd-tmpfiles-setup-dev.service
+    - systemd-tmpfiles-setup.service
+    - systemd-udev-trigger.service
+    - systemd-udevd.service
+    - systemd-update-utmp.service
+    - systemd-user-sessions.service
+    - tlp.service (Battery life)
+    - user-runtime-dir@1000.service
+    - user@1000.service
+    - wpa_supplicant.service (Wireless)
+
 ### ** TODO **
 - Filemanagers: ranger?? pcmanfm??
 - Calendar: calcurse??
