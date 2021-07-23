@@ -18,3 +18,4 @@ alias grs="g restore --staged"
 alias gp="g push"
 alias gpl="g pull"
 
+alias cat="bat"

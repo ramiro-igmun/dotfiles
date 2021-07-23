@@ -1,7 +1,7 @@
 # Distro
 Setup and config files for my linux dev environment.
 
-- **Distro**: *EndeavorOS* (Arch Linux fork)
+- **Distro**: *EndeavorOS* (Arch Linux based)
 - **Window Manager**: *I3WM*, light tiling window manager
 
 ## Packages
@@ -80,7 +80,7 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
     - xclip (clipboard nvim integration)
   - **Fonts**
     - Noto Sans
-    - FiraCode Nerd Font
+    - Fira Code
   - **WM**
     - i3-gaps
     - i3-lock
@@ -128,3 +128,4 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
 - Picom
 - xclip
 - zsh install, config...
+- document service enabling and starting

@@ -37,6 +37,7 @@ man-pages
 mlocate
 neofetch
 neovim
+nerd-fonts-fira-code
 net-tools
 network-manager-applet
 networkmanager
@@ -62,7 +63,6 @@ stow
 tldr
 tlp
 ttf-dejavu
-ttf-opensans
 virtualbox-guest-utils
 virtualbox-guest-modules-arch
 wget
