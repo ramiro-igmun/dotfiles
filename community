@@ -5,6 +5,7 @@ arandr
 arc-x-icons-theme
 archlinux-xdg-menu
 bash-completion
+bat
 bluez
 bluez-utils
 capitaine-cursors
@@ -31,6 +32,7 @@ linux
 linux-atm
 linux-firmware
 linux-headers
+light
 lvm2
 lxappearance-gtk3
 man-db
@@ -80,6 +82,7 @@ xorg-xinit
 xorg-xinput
 xorg-xkill
 xorg-xrandr
+xorg-xprop
 zsh
 zsh-completions
 zsh-syntax-highlighting
