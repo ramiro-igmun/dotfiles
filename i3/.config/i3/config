@@ -21,7 +21,7 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Noto Sans Regular 10
+font pango:sans 8
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -315,13 +315,20 @@ set $ws10 "10"
 # use workspaces on different displays
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
-#workspace $ws1 output VGA-0
-#workspace $ws2 output VGA-0
-#workspace $ws3 output HDMI-0
-#workspace $ws4 output HDMI-0
-#workspace $ws5 output HDMI-0
+workspace $ws1 output HDMI-A-0
+workspace $ws2 output HDMI-A-0
+workspace $ws3 output HDMI-A-0
+workspace $ws4 output HDMI-A-0
+workspace $ws5 output HDMI-A-0
+
+workspace $ws6 output eDP
+workspace $ws7 output eDP
+workspace $ws8 output eDP
+workspace $ws9 output eDP
+workspace $ws10 output eDP
 
 # bind program to workspace and focus to them on startup:
+#
 #assign [class="Xfce4-terminal"] $ws1
 #assign [class="(?i)firefox"] $ws2
 #assign [class="Thunar"] $ws3
