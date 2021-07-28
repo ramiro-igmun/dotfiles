@@ -12,7 +12,7 @@ Setup and config files for my linux dev environment.
   - Browser: *firefox-developers-edition*
   - Terminal: *alacritty*
   - Calendar: *calcurse*
-  
+
 ### Bash addons
   - Bash prompt: *starship*
   - Coloring ``ls``: *lsd*
@@ -21,27 +21,27 @@ Setup and config files for my linux dev environment.
 ### Programming
   - jvm skd manager *sdkman*
   - node version manager *nvm*
-  - IDE *Intellij Idea* 
-  - Rest client *Postman* 
+  - IDE *Intellij Idea*
+  - Rest client *Postman*
   - *Docker*
 
 ### Others
   - Backlight control *light*
-  - Neovim plugin manger [*vim-plug*](https://github.com/junegunn/vim-plug): 
+  - Neovim plugin manger [*vim-plug*](https://github.com/junegunn/vim-plug):
     ```
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    ```  
+    ```
 
 ### Themes
-  - **One Dark**: for alacritty, nvim, vscode and IntellijIdea 
+  - **One Dark**: for alacritty, nvim, vscode and IntellijIdea
 
 ### Fonts
   - Noto Sans: As global GTK font
   - Fira Code Nerd: For Editors, Terminal and IDE
 
 ### Backlight fix
-1. Install light package 
+1. Install light package
     ```
     sudo pacman -S light
     ```
@@ -109,14 +109,25 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
       sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-      ```  
+      ```
     - vscode
     - intelliJ
   - **Others**
     - neofetch
     - dmenu
     - rofi
+    - fnm (node version manager)
+      ```
+      curl -fsSL https://fnm.vercel.app/install | zsh
+      ```
 
+      Create completions file
+
+      ```
+      mkdir $HOME/.config/shell/completions
+      touch _fnm
+      fnm completions --shell zsh > _fnm
+      ```
   - **Services active**
     - alsa-restore.service (Sound)
     - dbus.service
@@ -144,16 +155,15 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
     - user-runtime-dir@1000.service
     - user@1000.service
     - wpa_supplicant.service (Wireless)
+  - **Timers**
+    - fstrim.timer
+    - logrotate.timer
+    - man-db.timer
+    - paccache.timer
+    - shadow.timer
+    - systemd-tmpfiles-clean.timer
+    - updatedb.timer
 
 ### ** TODO **
-- Filemanagers: ranger?? pcmanfm??
-- Calendar: calcurse??
-- Icons??
-- Install nvim pluginmanager
-- rofi and dunst themes?? config files from dotfiles?
-- Alternative browser to firefox??
 - Bitwarden dmenu client??
-- Picom
-- xclip
-- zsh install, config...
-- document service enabling and starting
+- Zathura
