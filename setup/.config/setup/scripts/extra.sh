@@ -7,6 +7,7 @@ git clone https://aur.archlinux.org/paru.git
 chmod 777 paru
 cd paru
 makepkg -si
+cd ..
 sudo rm -r paru
 
 # Install package list
