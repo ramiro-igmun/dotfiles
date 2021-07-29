@@ -13,6 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'mhinz/vim-signify'
 
 call plug#end()
 
@@ -31,6 +32,7 @@ set tabstop=2 shiftwidth=2 expandtab    "Set the tab size and transform tabs to 
 set mouse=a
 set clipboard+=unnamedplus              "Set clipboard to system clipboard
 set cursorline                          "Highlight cursor line
+set updatetime=100
 
 " Highlight whitespaces
 set list

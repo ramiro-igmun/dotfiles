@@ -138,6 +138,7 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
     - ntpd.service (Syncronize time)
     - polkit.service (Control system wide priviledges for communication between programs)
     - rtkit-daemon.service (Used by pulseaudio)
+    - sshd.service
     - systemd-journal-flush.service
     - systemd-journald.service
     - systemd-logind.service

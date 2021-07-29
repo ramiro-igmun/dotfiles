@@ -351,6 +351,12 @@ for_window [class=(?i)firefox] focus
 for_window [instance="dropdown"] floating enable, resize set 1000 800, move scratchpad, sticky enable
 exec --no-startup-id $term --class dropdown
 
+# remapSuper script: remap the Caslock to Super key
+exec --no-startup-id "setxkbmap -option caps:super"
+
+# remapEsc script: But when it is pressed only once, treat it as escape
+exec --no-startup-id "killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'"
+
 #get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
