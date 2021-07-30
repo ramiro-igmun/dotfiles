@@ -118,7 +118,7 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
     - rofi
     - fnm (node version manager)
       ```
-      curl -fsSL https://fnm.vercel.app/install | zsh
+      curl -fsSL https://fnm.vercel.app/install | bash
       ```
 
       Create completions file
