@@ -59,6 +59,7 @@ polkit-gnome
 poppler-glib
 pulseaudio
 pulseaudio-alsa
+python-pillow
 reflector
 reflector-simple
 rofi

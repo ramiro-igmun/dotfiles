@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+focus=$(xprop -id `xprop -root | awk '/^_NET_ACTIVE_WINDOW/{print $5}'` | awk -F '"' '/^WM_NAME/{print $2}')
+if [ -z "$focus" ];then
+    echo "${1:-} Welcome"
+else
+    [ "${#focus}" -gt "${2:-30}" ] && echo "${focus::${2:-30}} ..." || echo "$focus"
+fi

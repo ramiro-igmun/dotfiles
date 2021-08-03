@@ -60,9 +60,9 @@ if ($status eq 'Discharging') {
 
 $short_text = $full_text;
 
-if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " ($1)";
-}
+# if ($acpi =~ /(\d\d:\d\d):/) {
+# 	$full_text .= " ($1)";
+# }
 
 # print text
 print "$full_text\n";

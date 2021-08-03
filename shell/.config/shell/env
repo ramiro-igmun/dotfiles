@@ -6,6 +6,8 @@ export TERMINAL=alacritty
 export VISUAL=nvim
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='find . -type f'
+export PAGER=most
+export MOST_INITFILE=~/.config/most/.mostrc
 
 # Add the directory with the scripts to exec jetbrains apps to the path
 export PATH=$PATH:/home/ramiro/.config/JetBrains

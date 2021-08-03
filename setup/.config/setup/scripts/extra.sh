@@ -3,6 +3,12 @@
 PACKAGE_LIST=~/dotfiles/community
 AUR=~/dotfiles/aur
 
+# Make sure there is internet access
+sudo systemctl enable --now NetworkManager
+
+# Upgrade system
+sudo pacman -Syu
+
 # Install paru
 git clone https://aur.archlinux.org/paru.git
 chmod 777 paru
@@ -32,8 +38,10 @@ curl -fsSL https://fnm.vercel.app/install | bash
 
 # prepare shell and stow basic configs
 rm .bashrc .bash_profile
-cd dotfiles && stow shell && stow starship && stow xorg && stow fontconfig && stow i3
+cd $HOME/dotfiles && stow shell && stow starship && stow xorg && stow fontconfig && stow i3 && stow kitty && stow nvim
 cd
+
+source $HOME/.bashrc
 
 # Completions for fnm
 mkdir -p $HOME/.config/shell/completions
@@ -49,5 +57,3 @@ sudo systemctl enable wpa_supplicant.service
 # Enable timers
 sudo systemctl enable paccache.timer
 sudo systemctl enable fstrim.timer
-
-

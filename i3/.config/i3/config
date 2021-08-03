@@ -1,53 +1,15 @@
+######################
+## GENERAL SETTINGS ##
+######################
 
-# This file is a modified version based on default i3-config-wizard config
-# source is available here:
-# https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
-# Maintainer: joekamprad [joekamprad@endeavouros.com]
-# https://endeavouros.com
-#
-# --> to update this run the following command (will backup existing setup file)
-# wget --backups=1 https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/.config/i3/config -P ~/.config/i3/
-
-# Endeavouros-i3 config file
-# Source for complete framework of our i3 config and theming here: https://github.com/endeavouros-team/endeavouros-i3wm-setup
-# EndeavourOS wiki holds some Information also: https://endeavouros.com/docs/window-tiling-managers/i3-wm/
-# Please see http://i3wm.org/docs/userguide.html for the official i3 reference!
-
-#######################
-# config starts here: #
-#######################
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:sans 8
-
-# set the mod key to the winkey:
+# Primary key
 set $mod Mod4
-# set the terminal
-set $term alacritty
 
-popup_during_fullscreen smart
+# Terminal
+set $term kitty
 
-#####################
-# workspace layout: #
-#####################
-
-# default i3 tiling mode:
-workspace_layout default
-
-# i3 stacking layout:
-# Each window will be fullscreen and tabbed top to bottom.
-#workspace_layout stacking
-
-# i3 tabbed layout:
-# Each new window will open fullscreen as a tab (left to right)
-#workspace_layout tabbed
-
-##############################
-# extra options for windows: #
-##############################
+# Font
+font pango:sans 8
 
 #border indicator on windows:
 new_window pixel 2
@@ -62,139 +24,129 @@ gaps outer 2
 # Don't change focus on hover
 focus_follows_mouse no
 
+# remapSuper script: remap the Caslock to Super key (i3wm uses a lot Super key) 
+exec --no-startup-id "setxkbmap -option caps:super"
+
+# remapEsc script: But when it is pressed only once, treat it as escape (Vim uses a lot exit)
+exec --no-startup-id "killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'"
+
+##################
+## STARTUP APPS ##
+##################
+
+# NetworkManager tray applet
+exec --no-startup-id nm-applet
+
+# Set background
+exec --no-startup-id ~/.fehbg
+
+# start an instance of the terminal that will be a dropdown terminal
+for_window [instance="dropdown"] floating enable, resize set 1000 800, move scratchpad, sticky enable, move possition center
+exec --no-startup-id $term --name dropdown -e zsh -c "neofetch && zsh"
+
+#get auth work with polkit-gnome
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Desktop notifications
+exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+
+# dex execute .desktop files
+exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+
+# start a script to setup displays
+# uncomment the next line, use arandr to setup displays and save the file as monitor:
+exec --no-startup-id ~/.screenlayout/monitor.sh
+
+#transparency
+exec --no-startup-id picom -CGb --experimental-backends
+
+##########################################
+# CONFIGURATION FOR WORKSPACE BEHAVIOUR: #
+##########################################
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# use workspaces on different displays
+# where you have to replace display name when needed
+# you can get from xrandr command
+# COMMENT WHEN IN SINGLE MONITOR
+workspace $ws1 output HDMI-A-0
+workspace $ws2 output HDMI-A-0
+workspace $ws3 output HDMI-A-0
+workspace $ws4 output HDMI-A-0
+workspace $ws5 output HDMI-A-0
+
+workspace $ws6 output eDP
+workspace $ws7 output eDP
+workspace $ws8 output eDP
+workspace $ws9 output eDP
+workspace $ws10 output eDP
+
+# bind program to workspace and focus to them on startup:
+#
+assign [class="jetbrains-idea"] $ws1
+assign [class="code"] $ws1
+assign [class="firefoxdeveloperedition"] $ws2
+assign [class="kitty" instance="kitty"] $ws3
+assign [class="Pcmanfm"] $ws4
+assign [class="Thunar"] $ws4
+
+assign [class="localhost"] $ws6
+assign [class="microsoft teams - preview"] $ws7
+
+# automatic set focus new window if it opens on another workspace then the current:
+for_window [class="jetbrains-idea"] focus
+for_window [class="code"] focus
+for_window [class="kitty" instance="kitty"] focus
+for_window [class="firefoxdeveloperedition"] focus
+for_window [class="Pcmanfm"] focus
+for_window [class="Thunar"] focus
+
+# set floating (nontiling)for apps needing it
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [instance="calendar"] floating enable, resize set 1000 800, sticky enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+
+##################
+## KEY BINDINGS ##
+##################
+
+### MEDIA ###
+
+# volume
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+
+# brightness (Backlight control - for intel you might have to change to xbacklight)
+bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -A 10
+
+### WINDOWS & WORKSPACES ###
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# switch to workspace
-bindsym $mod+1    workspace  $ws1
-bindsym $mod+2    workspace  $ws2
-bindsym $mod+3    workspace  $ws3
-bindsym $mod+4    workspace  $ws4
-bindsym $mod+5    workspace  $ws5
-bindsym $mod+6    workspace  $ws6
-bindsym $mod+7    workspace  $ws7
-bindsym $mod+8    workspace  $ws8
-bindsym $mod+9    workspace  $ws9
-bindsym $mod+0    workspace  $ws10
-
-# switch to workspace with numpad keys
-bindcode $mod+87 workspace 1
-bindcode $mod+88 workspace 2
-bindcode $mod+89 workspace 3
-bindcode $mod+83 workspace 4
-bindcode $mod+84 workspace 5
-bindcode $mod+85 workspace 6
-bindcode $mod+79 workspace 7
-bindcode $mod+80 workspace 8
-bindcode $mod+81 workspace 9
-bindcode $mod+90 workspace 10
-
-# switch to workspace with numlock numpad keys
-bindcode $mod+Mod2+87 workspace $ws1
-bindcode $mod+Mod2+88 workspace $ws2
-bindcode $mod+Mod2+89 workspace $ws3
-bindcode $mod+Mod2+83 workspace $ws4
-bindcode $mod+Mod2+84 workspace $ws5
-bindcode $mod+Mod2+85 workspace $ws6
-bindcode $mod+Mod2+79 workspace $ws7
-bindcode $mod+Mod2+80 workspace $ws8
-bindcode $mod+Mod2+81 workspace $ws9
-bindcode $mod+Mod2+90 workspace $ws10
-
-
-# move focused container to workspace
-bindsym $mod+Shift+1    move container to workspace  $ws1
-bindsym $mod+Shift+2    move container to workspace  $ws2
-bindsym $mod+Shift+3    move container to workspace  $ws3
-bindsym $mod+Shift+4    move container to workspace  $ws4
-bindsym $mod+Shift+5    move container to workspace  $ws5
-bindsym $mod+Shift+6    move container to workspace  $ws6
-bindsym $mod+Shift+7    move container to workspace  $ws7
-bindsym $mod+Shift+8    move container to workspace  $ws8
-bindsym $mod+Shift+9    move container to workspace  $ws9
-bindsym $mod+Shift+0    move container to workspace  $ws10
-
-
-# move focused container to workspace with numpad keys
-bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
-bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2
-bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3
-bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4
-bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5
-bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6
-bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7
-bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8
-bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9
-bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws10
-
-# move focused container to workspace with numpad keys
-bindcode $mod+Shift+87 	 move container to workspace  $ws1
-bindcode $mod+Shift+88 	 move container to workspace  $ws2
-bindcode $mod+Shift+89 	 move container to workspace  $ws3
-bindcode $mod+Shift+83 	 move container to workspace  $ws4
-bindcode $mod+Shift+84 	 move container to workspace  $ws5
-bindcode $mod+Shift+85 	 move container to workspace  $ws6
-bindcode $mod+Shift+79 	 move container to workspace  $ws7
-bindcode $mod+Shift+80 	 move container to workspace  $ws8
-bindcode $mod+Shift+81 	 move container to workspace  $ws9
-bindcode $mod+Shift+90 	 move container to workspace  $ws10
-
-# resize window (you can also use the mouse for that):
-mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-# same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-# back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-######################################
-# keybindings for different actions: #
-######################################
-
 # start a terminal
-bindsym $mod+Return exec $term #-e bash -c "neofetch && bash"
+bindsym $mod+Return exec $term # -e zsh -c "neofetch && zsh"
 
 # kill focused window
-bindsym $mod+c kill
+bindsym $mod+q kill
 
-# exit-menu
-bindsym $mod+Shift+e exec ~/.config/i3/scripts/shutdown_menu -p rofi -c
-
-# Lock the system
-# lock with a picture:
-#bindsym $mod+f exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
-# lock by blurring the screen:
-bindsym $mod+Control+f exec ~/.config/i3/scripts/blur-lock.sh
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# keybinding list in editor:
-bindsym $mod+F1 exec xed ~/.config/i3/keybindings
-
-# Backlight control
-bindsym XF86MonBrightnessDown exec light -U 10
-bindsym XF86MonBrightnessUp exec light -A 10
+### WINDOW AND WORKSPACE NAVIGATION ###
 
 # change focus
 bindsym $mod+h focus left
@@ -221,10 +173,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+c split h
 
 # split in vertical orientation
-# bindsym $mod+v split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -240,295 +192,108 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
-bindsym $mod+a focus parent
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
-# open new empty workspace
-bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace.sh
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# toggle show/hide dropdown terminal
-bindsym $mod+u [instance="dropdown"] scratchpad show, move position center
-
-# swap workspaced between two monitors
-bindsym $mod+Shift+s exec ~/.config/i3/scripts/display_swap.sh
-
-## Multimedia Keys
-
-# volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-
-
-# Pulse Audio controls
-
-#volume up
-#bindsym XF86AudioRaiseVolume exec pamixer -i 5 --allow-boost && dunstify -h string:x-dunst-stack-tag:volume volume: $(pamixer --get-volume)%
-#volume down
-#bindsym XF86AudioLowerVolume exec pamixer -d 5 --allow-boost && dunstify -h string:x-dunst-stack-tag:volume volume: $(pamixer --get-volume)%
-#mute
-#bindsym XF86AudioMute exec pamixer -t && dunstify -h string:x-dunst-stack-tag:mute mute: $(pamixer --get-mute)!
-
-# gradular volume control
-bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
-
-# mute
-#bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
-#mute
-bindsym XF86AudioMute exec pamixer -t && notify-send "mute: $(pamixer --get-mute)"
-
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-# Redirect sound to headphones
-bindsym $mod+p exec /usr/local/bin/switch-audio-port
-
-## App shortcuts
-bindsym $mod+w exec /usr/bin/firefox-developer-edition
-bindsym $mod+n exec /usr/bin/thunar
-bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
-bindsym $mod+Shift+Print --release exec "scrot -s -f -o '/tmp/image.png' && xclip -selection clipboard -t image/png -i /tmp/image.png"
 bindsym $mod+Control+Right workspace next
 bindsym $mod+Control+Left workspace prev
 
 bindsym $mod+Control+l workspace next
 bindsym $mod+Control+h workspace prev
-##########################################
-# configuration for workspace behaviour: #
-##########################################
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+## APP SHORTCUTS ##
 
-# use workspaces on different displays
-# where you have to replace VGA-0/HDMI-0 with the names for your displays
-# you can get from xrandr command
-workspace $ws1 output HDMI-A-0
-workspace $ws2 output HDMI-A-0
-workspace $ws3 output HDMI-A-0
-workspace $ws4 output HDMI-A-0
-workspace $ws5 output HDMI-A-0
+bindsym $mod+w exec /usr/bin/firefox-developer-edition
+bindsym $mod+z exec "firefox-developer-edition --new-window localhost:4200 --class=localhost"
+# bindsym $mod+n exec /usr/bin/pcmanfm
+bindsym $mod+n exec /usr/bin/thunar
+bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
+bindsym $mod+Shift+Print --release exec "scrot -s -f -o '/tmp/image.png' && xclip -selection clipboard -t image/png -i /tmp/image.png"
 
-workspace $ws6 output eDP
-workspace $ws7 output eDP
-workspace $ws8 output eDP
-workspace $ws9 output eDP
-workspace $ws10 output eDP
+### OTHERS ###
 
-# bind program to workspace and focus to them on startup:
-#
-#assign [class="Xfce4-terminal"] $ws1
-#assign [class="(?i)firefox"] $ws2
-#assign [class="Thunar"] $ws3
-#assign [class="Thunderbird"] $ws4
-#assign [class="TelegramDesktop"] $ws5
+# toggle show/hide dropdown terminal
+bindsym $mod+u [instance="dropdown"] scratchpad show, move position center
+# swap workspaced between two monitors
+bindsym $mod+Shift+s exec ~/.config/i3/scripts/display_swap.sh
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit-menu
+bindsym $mod+Shift+e exec ~/.config/i3/scripts/shutdown_menu -p rofi -c
 
+# START DMENU
+# bindsym $mod+d exec --no-startup-id dmenu_run
 
-# automatic set focus new window if it opens on another workspace then the current:
-for_window [class=Alacritty] focus
-for_window [class=(?i)firefox] focus
-#for_window [class=Thunar] focus
-#for_window [class=Thunderbird] focus
-#for_window [class=TelegramDesktop] focus
+# START ROFI
+bindsym $mod+d exec rofi -modi drun -show drun -display-drun "Apps : " -line-padding 4 \
+                -columns 2 -padding 10 -hide-scrollbar \
+                -show-icons -drun-icon-theme "Arc-X-D" -font "sans 11"
 
-#############################################
-# autostart applications/services on login: #
-#############################################
+# I3-DMENU-DESKTOP which only displays applications shipping a
+# .desktop file. It is a wrapper around dmenu, so you need that installed.
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-# start an instance of the terminal that will be a dropdown terminal
-for_window [instance="dropdown"] floating enable, resize set 1000 800, move scratchpad, sticky enable
-exec --no-startup-id $term --class dropdown
+# resize window (you can also use the mouse for that):
+mode "resize" {
+# These bindings trigger as soon as you enter the resize mode
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
-# remapSuper script: remap the Caslock to Super key
-exec --no-startup-id "setxkbmap -option caps:super"
+# same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
-# remapEsc script: But when it is pressed only once, treat it as escape
-exec --no-startup-id "killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'"
+# back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
-#get auth work with polkit-gnome
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# dex execute .desktop files
-# keep in mind that it can cause issues
-# when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
-# in this cases better disable dex and use manual starting apps using xdg/autostart
-exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-
-# num lock activated
-#exec --no-startup-id numlockx on
-
-# start conky:
-#exec_always --no-startup-id conky
-
-# start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id ~/.screenlayout/monitor.sh
-
-# start blueberry app for managing bluetooth devices from tray:
-exec --no-startup-id blueberry-tray
-
-#transparency
-#exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
-exec --no-startup-id picom -CGb --experimental-backends
-
-#networkmanager-applet
-exec --no-startup-id nm-applet
-
-# set wallpaper
-exec --no-startup-id nitrogen --restore
-#exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
-
-#set powersavings for display:
-exec --no-startup-id xset s 480 dpms 600 600 600
-
-# Desktop notifications
-exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
-
-# Autostart apps as you like
-#exec --no-startup-id sleep 2 && xfce4-terminal
-#exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
-#exec --no-startup-id sleep 3 && thunar
-
-# set floating (nontiling)for apps needing it
-for_window [class="Yad" instance="yad"] floating enable
-for_window [class="Galculator" instance="galculator"] floating enable
-for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-for_window [class="Alacritty" instance="calendar"] floating enable
-
-#set floating (nontiling) for special apps
-for_window [class="Xsane" instance="xsane"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [class="qt5ct" instance="qt5ct"] floating enable
-for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
-for_window [class="Pamac-manager"] floating enable
+bindsym $mod+r mode "resize"
 
 #set alternating automatic tiling
 exec_always --no-startup-id autotiling
 
-######################################
-# color settings for bar and windows #
-######################################
-
-# Define colors variables:
-set $darkbluetrans	#08052be6
-set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#ffffff
-set $black		#000000
-set $purple		#e345ff
-set $darkgrey		#383c4a
-set $grey		#b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
-set $moredarkgrey  #252936
-
-# define colors for windows:
-#class		        	border		bground		text		indicator	child_border
-client.focused		    $lightblue	$lightblue	$white		$lightblue		$lightblue
-client.unfocused	    $darkblue	$darkblue	$grey		$darkblue		$darkblue
-client.focused_inactive	$darkblue	$darkblue	$grey		$darkblue		$darkblue
-client.urgent		    $urgentred	$urgentred	$white		$urgentred		$urgentred
-
-
-############################################
-# bar settings (input comes from i3blocks) #
-############################################
-
-# Start i3bar to display a workspace bar
-# (plus the system information i3status finds out, if available)
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
 bar {
-		font pango: sans 10
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-		position top
-#	  	i3bar_command i3bar --transparency
-# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# reference: https://i3wm.org/docs/userguide.html#_tray_output
-		    tray_output primary
-		    tray_padding 0
-
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
-strip_workspace_numbers no
-strip_workspace_name yes
-
-	colors {
-		    separator          $purple
-		    background         $moredarkgrey
-		    statusline         $white
-#                          		border 		        bg		txt		indicator
-		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
-	}
+    font pango:sans 10
+    position top
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    tray_output primary
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #61afef #61afef #222222
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
-
-# you can add different bars for multidisplay setups on each display:
-# set output HDMI-0 to the display you want the bar, --transparency can be set.
-# Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
-# https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
-# #08052be6 --> e6=90%
-
-# bar {
-#	font pango:Noto Sans Regular 9, FontAwesome 9
-#	status_command i3blocks -c ~/.config/i3/i3blocks-2.conf
-#	i3bar_command i3bar --transparency
-#	output HDMI-0
-#	position bottom
-#
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
-#strip_workspace_numbers yes
-##strip_workspace_name no
-#
-#	colors {
-#		separator          $purple
-#		background         $darkbluetrans
-#        	statusline         $white
-#					border		bg		txt		indicator
-#		focused_workspace	$lighterblue	$lighterblue	$darkblue	$purple
-#		active_workspace	$lightdblue	$lightdblue	$darkblue	$purple
-#		inactive_workspace	$darkblue	$darkblue	$lightdblue	$purple
-#		urgent_workspace	$urgentred	$urgentred	$white		$purple
-#	}
-#}
-
-#####################################
-# Application menu handled by rofi: #
-#####################################
-
-## rofi bindings fancy application menu (two bindings F9/$mod+d)
-
-bindsym $mod+d exec rofi -modi drun -show drun -display-drun "Apps : " -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
-
-bindsym F9 exec rofi -modi drun -show drun -display-drun "Apps : " -line-padding 4 \
-                -columns 2 -padding 30 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
-
-## rofi bindings for window menu (two bindings F10/$mod+t)
-
-bindsym $mod+t exec rofi -show window -display-window "Window : " -line-padding 4 \
-                -lines 10 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
-
-bindsym F10 exec rofi -show window -display-window "Window : " -line-padding 4 \
-                -lines 10 -padding 50 -hide-scrollbar \
-                -show-icons -drun-icon-theme "Arc-X-D" -font "Noto Sans Regular 11"
