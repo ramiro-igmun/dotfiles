@@ -20,6 +20,8 @@ hide_edge_borders none
 # Set inner/outer gaps
 gaps inner 8
 gaps outer 2
+smart_gaps on
+smart_borders no_gaps
 
 # Don't change focus on hover
 focus_follows_mouse no
@@ -96,7 +98,7 @@ workspace $ws10 output eDP
 # bind program to workspace and focus to them on startup:
 #
 assign [class="jetbrains-idea"] $ws1
-assign [class="code"] $ws1
+assign [class="Code"] $ws1
 assign [class="firefoxdeveloperedition"] $ws2
 assign [class="kitty" instance="kitty"] $ws3
 assign [class="Pcmanfm"] $ws4
@@ -107,7 +109,7 @@ assign [class="microsoft teams - preview"] $ws7
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class="jetbrains-idea"] focus
-for_window [class="code"] focus
+for_window [class="Code"] focus
 for_window [class="kitty" instance="kitty"] focus
 for_window [class="firefoxdeveloperedition"] focus
 for_window [class="Pcmanfm"] focus
@@ -117,8 +119,9 @@ for_window [class="Thunar"] focus
 for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-for_window [instance="calendar"] floating enable, resize set 1000 800, sticky enable
+for_window [instance="calendar"] floating enable, resize set 1000 800, sticky enable, move position center
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Lxappearance"] floating enable
 
 ##################
 ## KEY BINDINGS ##

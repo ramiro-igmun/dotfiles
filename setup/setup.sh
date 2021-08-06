@@ -3,6 +3,13 @@
 PACKAGE_LIST=~/dotfiles/community
 AUR=~/dotfiles/aur
 
+# Set local time
+sudo ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+sudo hwclock --systohc
+
+sudo echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen
+sudo locale-gen
+
 # Make sure there is internet access
 sudo systemctl enable --now NetworkManager
 
@@ -24,7 +31,7 @@ paru -S --needed - < "$PACKAGE_LIST"
 paru -S --needed - < "$AUR"
 
 # Change shell to zsh
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh
 
 # Install neovim plugin manager
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -44,9 +51,9 @@ cd
 source $HOME/.bashrc
 
 # Completions for fnm
-mkdir -p $HOME/.config/shell/completions
-touch _fnm
-fnm completions --shell zsh > _fnm
+# mkdir -p $HOME/.config/shell/completions
+# touch $HOME/.config/shell/completions/_fnm
+fnm completions --shell zsh > $HOME/.config/shell/completions/_fnm
 
 # Enable services
 sudo systemctl enable avahi-daemon.service
@@ -57,3 +64,5 @@ sudo systemctl enable wpa_supplicant.service
 # Enable timers
 sudo systemctl enable paccache.timer
 sudo systemctl enable fstrim.timer
+
+# TODO install sdkman / autoinstall nvim plugins on init.vim
