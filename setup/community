@@ -88,6 +88,7 @@ xorg-xinit
 xorg-xinput
 xorg-xkill
 xorg-xrandr
+xorg-xset
 xorg-xprop
 zsh
 zsh-completions

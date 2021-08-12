@@ -5,6 +5,9 @@
 # Primary key
 set $mod Mod4
 
+# Set alt key
+set $alt Mod1
+
 # Terminal
 set $term kitty
 
@@ -39,8 +42,12 @@ exec --no-startup-id "killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape'"
 # NetworkManager tray applet
 exec --no-startup-id nm-applet
 
+# start blueberry app for managing bluetooth devices from tray:
+# exec --no-startup-id blueberry-tray
+
 # Set background
-exec --no-startup-id ~/.fehbg
+# exec --no-startup-id ~/.fehbg
+exec --no-startup-id nitrogen --restore
 
 # start an instance of the terminal that will be a dropdown terminal
 for_window [instance="dropdown"] floating enable, resize set 1000 800, move scratchpad, sticky enable, move possition center
@@ -61,6 +68,9 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 #transparency
 exec --no-startup-id picom -CGb --experimental-backends
+
+#set powersavings for display:
+exec --no-startup-id xset s 480 dpms 600 600 600
 
 ##########################################
 # CONFIGURATION FOR WORKSPACE BEHAVIOUR: #
@@ -99,21 +109,22 @@ workspace $ws10 output eDP
 #
 assign [class="jetbrains-idea"] $ws1
 assign [class="Code"] $ws1
-assign [class="firefoxdeveloperedition"] $ws2
+assign [instance="Navigator" class="firefoxdeveloperedition"] $ws2
+assign [instance="Navigator" class="localhost"] $ws6
 assign [class="kitty" instance="kitty"] $ws3
 assign [class="Pcmanfm"] $ws4
-assign [class="Thunar"] $ws4
-
-assign [class="localhost"] $ws6
+assign [instance="thunar" class="Thunar"] $ws4
+assign [instance="ranger"] $ws4
 assign [class="microsoft teams - preview"] $ws7
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class="jetbrains-idea"] focus
 for_window [class="Code"] focus
 for_window [class="kitty" instance="kitty"] focus
-for_window [class="firefoxdeveloperedition"] focus
+for_window [instance="Navigator"] focus
 for_window [class="Pcmanfm"] focus
 for_window [class="Thunar"] focus
+for_window [instance="ranger"] focus
 
 # set floating (nontiling)for apps needing it
 for_window [class="Yad" instance="yad"] floating enable
@@ -145,6 +156,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $term # -e zsh -c "neofetch && zsh"
+bindsym $mod+$alt+Return exec $term --class currentws # -e zsh -c "neofetch && zsh"
 
 # kill focused window
 bindsym $mod+q kill
@@ -227,10 +239,20 @@ bindsym $mod+Control+h workspace prev
 
 ## APP SHORTCUTS ##
 
-bindsym $mod+w exec /usr/bin/firefox-developer-edition
-bindsym $mod+z exec "firefox-developer-edition --new-window localhost:4200 --class=localhost"
+bindsym $mod+w exec "firefox-developer-edition -P dev-edition-default"
+bindsym $mod+$alt+w exec "firefox-developer-edition -P dev-edition-default --class=currentws"
+bindsym $mod+z exec "firefox-developer-edition --no-remote -P localhost --new-window localhost:4200 --class=localhost"
+
 # bindsym $mod+n exec /usr/bin/pcmanfm
+# bindsym $mod+$alt+n exec "/usr/bin/pcmanfm --class=currentws"
 bindsym $mod+n exec /usr/bin/thunar
+bindsym $mod+$alt+n exec "/usr/bin/thunar --class=currentws"
+
+bindsym $mod+F1 exec $term --name ranger -e ranger
+bindsym $mod+$alt+F1 exec $term --name currentws -e ranger
+bindsym $mod+F2 exec $term --name calendar -e calcurse
+bindsym $mod+F3 exec idea
+bindsym $mod+F4 exec code
 
 # Screenshots
 bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"

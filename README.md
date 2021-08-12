@@ -1,26 +1,44 @@
-# Distro
-Setup and config files for my linux dev environment.
+# Dotfiles
+This are the config files for the environment that I am currently using in my production machine. I use [stow](https://www.gnu.org/software/stow/) to manage my dotfiles.
 
-- **Distro**: *EndeavorOS* (Arch Linux based)
+- **Distro**: *EndeavorOS* (The setup works well in bare Arch too)
 - **Window Manager**: *I3WM*, light tiling window manager
+  - *i3-gaps, i3-blocks*
 
-## Packages
+![screenshot](screenshot.png)
 
-  - Filemanagers: *thunar* and *ranger*
+### Installation
+To install clone this repository in your home directory and... 
+  #### From bare Arch
+  And run the script `setup.sh` (git must be installed beforehand). 
+
+  #### From Endeavour or other arch base distro  
+  1) Install the packages from the `community` and `aur` package lists. You can run the this command to install the whole list:
+  ``
+  sudo pacman -S --needed - < community
+  ``
+  2) Symlink the needed modules from the dotfiles folder with stow.
+
+### Main apps
+
+  - Filemanagers: *Pcmanfm* and *ranger*
   - Images: *feh* and *nitrogen*
   - Editors: *vscode* and *neovim*
   - Browser: *firefox-developers-edition*
-  - Terminal: *alacritty*
+  - Terminal: *kitty*
   - Calendar: *calcurse*
 
-### Bash addons
-  - Bash prompt: *starship*
-  - Coloring ``ls``: *lsd*
+### Shell
+  - *zsh*
+  - Prompt: *starship*
+  - Coloring: *lsd*
   - *tree* (stdout folder structure)
+  - *bat* Modern substitute for ``cat``
+  - *most* Pager, used as substitute for less with coloring
 
-### Programming
+### Development
   - jvm skd manager *sdkman*
-  - node version manager *nvm*
+  - node version manager *fnm*
   - IDE *Intellij Idea*
   - Rest client *Postman*
   - *Docker*
@@ -28,17 +46,14 @@ Setup and config files for my linux dev environment.
 ### Others
   - Backlight control *light*
   - Neovim plugin manger [*vim-plug*](https://github.com/junegunn/vim-plug):
-    ```
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    ```
+  - Document viewer *Zathura*
 
 ### Themes
-  - **One Dark**: for alacritty, nvim, vscode and IntellijIdea
+  - **One Dark**: for terminal, nvim, vscode and IntellijIdea
 
 ### Fonts
   - Noto Sans: As global GTK font
-  - Fira Code Nerd: For Editors, Terminal and IDE
+  - Fira Code: For Editors, Terminal and IDE
 
 ### Backlight fix
 1. Install light package
@@ -54,7 +69,7 @@ Setup and config files for my linux dev environment.
 From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_horizontal_/_vertical_window_split_orientation)
 1. Install the autotiling AUR package
     ```
-    yay -S autotiling
+    paru -S autotiling
     ```
 2. After installation add the following to your `~/.config/i3/config` and reload i3.
     ```
@@ -64,107 +79,11 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
 ### Git
 1. Add shh key
     ```
-    ssh-keygen -t rsa -b 4096 -C "riglesias@ginzo.tech"
+    ssh-keygen -t rsa -b 4096 -C "name@mail.com"
     ```
-
-### PACKAGE LIST FOR CLEAN INSTALL
-  - **System**
-    - NetworkManager
-    - network-manager-applet (network manager tray)
-    - xorg-server
-    - xorg-xinit (create .xinitrc and edit the last line to execute WM on startx -> 'exec i3')
-    - install a system font (ej. ttf-dejavu)
-    - Dunst (notifications)
-    - amd-ucode (microcode for amd -> see arch wiki)
-    - arandr (xrandr GUI for display management)
-    - xclip (clipboard nvim integration)
-  - **Fonts**
-    - Noto Sans
-    - Fira Code
-  - **WM**
-    - i3-gaps
-    - i3-lock
-    - i3blocks(optional)
-  - **Terminal**
-    - kitty
-  - **Utils**
-    - git
-  - **Audio**
-    - Alsa:
-        - alsa-utils
-        - alsa-plugins ??
-    - pulseaudio
-    - pavucontrol
-  - **AUR**
-    - paru
-      ```
-      git clone https://aur.archlinux.org/paru.git
-      cd paru
-      makepkg -si
-      ```
-  - **Editor**
-    - neovim
-      - Run the following to install plugin manager:
-      ```
-      sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-      ```
-    - vscode
-    - intelliJ
-  - **Others**
-    - neofetch
-    - dmenu
-    - rofi
-    - fnm (node version manager)
-      ```
-      curl -fsSL https://fnm.vercel.app/install | bash
-      ```
-
-      Create completions file
-
-      ```
-      mkdir $HOME/.config/shell/completions
-      touch _fnm
-      fnm completions --shell zsh > _fnm
-      ```
-  - **Services active**
-    - alsa-restore.service (Sound)
-    - dbus.service
-    - getty@tty1.service
-    - kmod-static-nodes.service
-    - lvm2-monitor.service (for logical volume management. Better disable?)
-    - NetworkManager.service
-    - ntpd.service (Syncronize time)
-    - polkit.service (Control system wide priviledges for communication between programs)
-    - rtkit-daemon.service (Used by pulseaudio)
-    - sshd.service
-    - systemd-journal-flush.service
-    - systemd-journald.service
-    - systemd-logind.service
-    - systemd-modules-load.service
-    - systemd-random-seed.service
-    - systemd-remount-fs.service
-    - systemd-sysctl.service
-    - systemd-tmpfiles-setup-dev.service
-    - systemd-tmpfiles-setup.service
-    - systemd-udev-trigger.service
-    - systemd-udevd.service
-    - systemd-update-utmp.service
-    - systemd-user-sessions.service
-    - tlp.service (Battery life)
-    - user-runtime-dir@1000.service
-    - user@1000.service
-    - wpa_supplicant.service (Wireless)
-  - **Timers**
-    - fstrim.timer
-    - logrotate.timer
-    - man-db.timer
-    - paccache.timer
-    - shadow.timer
-    - systemd-tmpfiles-clean.timer
-    - updatedb.timer
 
 ### ** TODO **
 - Bitwarden dmenu client??
-- Zathura
+- Arch maintenance functions (orphan packages etc.)
+- keybinding for ranger
+- keybinding for calcurse
