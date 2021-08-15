@@ -1,5 +1,5 @@
 # Dotfiles
-This are the config files for the environment that I am currently using in my production machine. I use [stow](https://www.gnu.org/software/stow/) to manage my dotfiles.
+These are the config files for the environment that I am currently using in my production machine. I use [stow](https://www.gnu.org/software/stow/) to manage my dotfiles.
 
 - **Distro**: *EndeavorOS* (The setup works well in bare Arch too)
 - **Window Manager**: *I3WM*, light tiling window manager
