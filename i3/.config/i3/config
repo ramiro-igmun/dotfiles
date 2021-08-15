@@ -15,7 +15,7 @@ set $term kitty
 font pango:sans 8
 
 #border indicator on windows:
-new_window pixel 2
+default_border pixel 2
 
 # thin borders
 hide_edge_borders none
@@ -106,16 +106,17 @@ workspace $ws9 output eDP
 workspace $ws10 output eDP
 
 # bind program to workspace and focus to them on startup:
-#
-assign [class="jetbrains-idea"] $ws1
-assign [class="Code"] $ws1
+assign [class="jetbrains-idea"]                               $ws1
+assign [class="Code"]                                         $ws1
 assign [instance="Navigator" class="firefoxdeveloperedition"] $ws2
-assign [instance="Navigator" class="localhost"] $ws6
-assign [class="kitty" instance="kitty"] $ws3
-assign [class="Pcmanfm"] $ws4
-assign [instance="thunar" class="Thunar"] $ws4
-assign [instance="ranger"] $ws4
-assign [class="microsoft teams - preview"] $ws7
+assign [class="kitty" instance="kitty"]                       $ws3
+assign [class="Pcmanfm"]                                      $ws4
+assign [instance="thunar" class="Thunar"]                     $ws4
+assign [instance="ranger"]                                    $ws4
+assign [instance="zathura"]                                   $ws5
+
+assign [instance="Navigator" class="localhost"]               $ws6
+assign [class="microsoft teams - preview"]                    $ws7
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class="jetbrains-idea"] focus
@@ -125,6 +126,7 @@ for_window [instance="Navigator"] focus
 for_window [class="Pcmanfm"] focus
 for_window [class="Thunar"] focus
 for_window [instance="ranger"] focus
+for_window [instance="zathura"] focus
 
 # set floating (nontiling)for apps needing it
 for_window [class="Yad" instance="yad"] floating enable
@@ -312,6 +314,32 @@ bindsym $mod+r mode "resize"
 #set alternating automatic tiling
 exec_always --no-startup-id autotiling
 
+######################################
+# COLOR SETTINGS FOR BAR AND WINDOWS #
+######################################
+
+# Define colors variables:
+set $darkbluetrans   #08052be6
+set $darkblue        #08052b
+set $lightblue       #61afef
+set $urgentred       #e06c75
+set $white           #ccd2db
+set $black           #000000
+set $purple          #c678dd
+set $darkgrey        #383c4a
+set $grey            #abb2bf
+set $mediumgrey      #8b8b8b
+set $yellowbrown     #e5c07b
+set $moredarkgrey    #282c34
+set $green           #98c379
+
+# define colors for windows:
+#class                    border      bground      text    indicator   child_border
+client.focused            $lightblue  $lightblue   $white  $purple     $lightblue
+client.unfocused          $darkgrey   $darkgrey    $grey   $darkgrey   $darkgrey
+client.focused_inactive   $darkgrey   $darkgrey    $grey   $darkgrey   $darkgrey
+client.urgent             $urgentred  $urgentred   $white  $urgentred  $urgentred
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -320,12 +348,12 @@ bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
     tray_output primary
     colors {
-        separator #666666
-        background #222222
-        statusline #dddddd
-        focused_workspace #61afef #61afef #222222
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
+        separator $mediumgrey
+        background $moredarkgrey
+        statusline $white
+        focused_workspace $lightblue $lightblue $moredarkgrey
+        active_workspace $darkgrey $darkgrey $grey
+        inactive_workspace $darkgrey $darkgrey $grey
+        urgent_workspace $darkgrey $urgentred $white
     }
 }

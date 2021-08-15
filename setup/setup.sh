@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
-PACKAGE_LIST=~/dotfiles/community
-AUR=~/dotfiles/aur
+PACKAGE_LIST=~/dotfiles/setup/community
+AUR=~/dotfiles/setup/aur
 
 # Set local time
 sudo ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
