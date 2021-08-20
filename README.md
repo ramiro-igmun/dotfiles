@@ -85,5 +85,4 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
 ### ** TODO **
 - Bitwarden dmenu client??
 - Arch maintenance functions (orphan packages etc.)
-- keybinding for ranger
-- keybinding for calcurse
+- Microcode -> systemd 

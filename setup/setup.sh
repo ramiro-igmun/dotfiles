@@ -55,6 +55,9 @@ source $HOME/.bashrc
 # touch $HOME/.config/shell/completions/_fnm
 fnm completions --shell zsh > $HOME/.config/shell/completions/_fnm
 
+# Set tearfree option for amd gpu driver
+sudo cp 20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+
 # Enable services
 sudo systemctl enable avahi-daemon.service
 sudo systemctl enable sshd.service
