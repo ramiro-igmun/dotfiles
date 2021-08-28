@@ -14,6 +14,7 @@ Plug 'tpope/vim-commentary'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'mhinz/vim-signify'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 

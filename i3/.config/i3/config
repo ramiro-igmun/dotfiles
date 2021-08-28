@@ -45,9 +45,9 @@ exec --no-startup-id nm-applet
 # start blueberry app for managing bluetooth devices from tray:
 # exec --no-startup-id blueberry-tray
 
-# Set background
-# exec --no-startup-id ~/.fehbg
-exec --no-startup-id nitrogen --restore
+# start a script to setup displays
+# uncomment the next line, use arandr to setup displays and save the file as monitor:
+exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # start an instance of the terminal that will be a dropdown terminal
 for_window [instance="dropdown"] floating enable, resize set 1000 800, move scratchpad, sticky enable, move possition center
@@ -62,12 +62,12 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 # dex execute .desktop files
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 
-# start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id ~/.screenlayout/monitor.sh
-
 #transparency
 exec --no-startup-id picom -CGb --experimental-backends
+
+# Set background
+# exec --no-startup-id ~/.fehbg
+exec --no-startup-id nitrogen --restore
 
 #set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600

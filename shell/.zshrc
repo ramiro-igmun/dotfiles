@@ -62,8 +62,8 @@ export STARSHIP_CONFIG=~/.config/starship/config.toml
 eval "$(starship init zsh)"
 
 ##THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
- export SDKMAN_DIR="/home/ramiro/.sdkman"
- [[ -s "/home/ramiro/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ramiro/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/home/ramiro/.sdkman"
+[[ -s "/home/ramiro/.sdkman/bin/sdkman-init.sh" ]] && source "/home/ramiro/.sdkman/bin/sdkman-init.sh"
 
 # fnm
 export PATH=/home/ramiro/.fnm:$PATH

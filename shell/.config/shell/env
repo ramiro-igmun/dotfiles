@@ -2,11 +2,12 @@
 
 # Default programs
 export BROWSER=firefox-developer-edition
-export TERMINAL=alacritty
+export TERMINAL=kitty
 export VISUAL=nvim
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='find . -type f'
-export PAGER=most
+export PAGER=less
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MOST_INITFILE=~/.config/most/.mostrc
 
 # Add the directory with the scripts to exec jetbrains apps to the path

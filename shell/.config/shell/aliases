@@ -1,10 +1,16 @@
 #!usr/bin/env bash
 
 # Alias to use lsd app to colorize the output
-alias ls="lsd"
+alias ls="exa --color-scale --icons --sort=name --sort=type"
+alias lst="ls --tree"
 alias l="ls -l"
+alias lt="ls -l --tree"
 alias la="ls -a"
+alias lat="ls -a --tree"
 alias ll="ls -la"
+alias llt="ls -la --tree"
+
+alias cd..="cd .."
 
 alias vi="nvim"
 
@@ -19,3 +25,6 @@ alias gp="g push"
 alias gpl="g pull"
 
 alias cat="bat"
+alias grep="grep --color=auto"
+
+alias ssh="TERM=xterm-256color ssh"
