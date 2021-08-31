@@ -1,0 +1,16 @@
+@theme "Arc-Dark"
+window {
+  padding: 10;
+  font: "sans 11";
+}
+
+listview {
+  columns: 2;
+  scrollbar: false;
+  spacing: 7;
+  lines: 12;
+}
+
+element-text {
+  margin: 0 10;
+}

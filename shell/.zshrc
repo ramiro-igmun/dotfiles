@@ -12,6 +12,9 @@ HISTFILE=~/.cache/zsh/history
 # Load aliases
 [ -f "$HOME/.config/shell/aliases" ] && source "$HOME/.config/shell/aliases"
 
+# Load personal functions
+[ -f "$HOME/.config/shell/functions" ] && source "$HOME/.config/shell/functions"
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -51,11 +54,6 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 bindkey '^[[P' delete-char
-
-# start intellij from terminal, dump all stdout to /dev/null and run it on the background
-ij() {
- idea $1>/dev/null 2>&1 &
-}
 
 ## Starship config
 export STARSHIP_CONFIG=~/.config/starship/config.toml

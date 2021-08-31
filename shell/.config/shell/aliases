@@ -27,4 +27,5 @@ alias gpl="g pull"
 alias cat="bat"
 alias grep="grep --color=auto"
 
+# Needed for the term type to be recogniced by the remote servers
 alias ssh="TERM=xterm-256color ssh"

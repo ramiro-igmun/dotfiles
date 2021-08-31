@@ -1,0 +1,14 @@
+@theme "Arc-Dark"
+window {
+  padding: 5;
+  font: "sans 10";
+  width: 150;
+  location: north east;
+}
+
+listview {
+  columns: 1;
+  scrollbar: false;
+  spacing: 4;
+  fixed-height: false;
+}
