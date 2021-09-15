@@ -8,6 +8,7 @@ bash-completion
 bat
 bluez
 bluez-utils
+calcurse
 capitaine-cursors
 dex
 dialog
@@ -29,11 +30,11 @@ inxi
 jq
 keyserver-rank
 kitty
+light
 linux
 linux-atm
 linux-firmware
 linux-headers
-light
 lvm2
 lxappearance-gtk3
 man-db
@@ -60,6 +61,7 @@ poppler-glib
 pulseaudio
 pulseaudio-alsa
 python-pillow
+ranger
 reflector
 reflector-simple
 ripgrep
@@ -68,12 +70,14 @@ scrot
 starship
 stow
 sysstat
+terminus-font-ll2-td1-ttf
 tldr
 tlp
 ttf-dejavu
 ttf-fira-code
-virtualbox-guest-utils
+ttf-liberation
 virtualbox-guest-modules-arch
+virtualbox-guest-utils
 wget
 whois
 wireless_tools
@@ -88,9 +92,9 @@ xorg-xdpyinfo
 xorg-xinit
 xorg-xinput
 xorg-xkill
+xorg-xprop
 xorg-xrandr
 xorg-xset
-xorg-xprop
 zsh
 zsh-completions
 zsh-syntax-highlighting

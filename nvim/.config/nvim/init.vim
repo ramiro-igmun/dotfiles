@@ -50,7 +50,7 @@ set ignorecase
 set smartcase
 
 " KEYBINDIGS
-inoremap jj <Esc>
+" inoremap jj <Esc>
 let mapleader = ' '
 
 map <C-h> <C-w>h

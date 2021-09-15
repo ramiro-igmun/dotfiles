@@ -11,6 +11,10 @@ alias ll="ls -la"
 alias llt="ls -la --tree"
 
 alias cd..="cd .."
+alias cls="clear"
+
+alias rm="rm -i"
+alias mv="mv -i"
 
 alias vi="nvim"
 

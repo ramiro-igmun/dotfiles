@@ -5,6 +5,9 @@
 # Set environment variables
 [[ -f ~/.config/shell/env ]] && . ~/.config/shell/env
 
+# Set aliases
+[[ -f ~/.config/shell/aliases ]] && . ~/.config/shell/aliases
+
 # Source bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 

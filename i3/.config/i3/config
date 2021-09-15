@@ -8,8 +8,8 @@ set $mod Mod4
 # Set alt key
 set $alt Mod1
 
-# Terminal
-set $term kitty
+# Dropdown terminal
+set $dropdown kitty
 
 # Font
 font pango:sans 8
@@ -21,8 +21,8 @@ default_border pixel 2
 hide_edge_borders none
 
 # Set inner/outer gaps
-gaps inner 8
-gaps outer 2
+gaps inner 6
+gaps outer 1
 smart_gaps on
 smart_borders no_gaps
 
@@ -51,7 +51,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # start an instance of the terminal that will be a dropdown terminal
 for_window [instance="dropdown"] floating enable, resize set 1000 800, move scratchpad, sticky enable, move possition center
-exec --no-startup-id $term --name dropdown -e zsh -c "neofetch && zsh"
+exec --no-startup-id $dropdown --class dropdown -e zsh -c "neofetch && zsh"
 
 #get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -63,7 +63,7 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 
 #transparency
-exec --no-startup-id picom -CGb --experimental-backends
+exec --no-startup-id picom -b --experimental-backends
 
 # Set background
 # exec --no-startup-id ~/.fehbg
@@ -110,18 +110,20 @@ assign [class="jetbrains-idea"]                               $ws1
 assign [class="Code"]                                         $ws1
 assign [instance="Navigator" class="firefoxdeveloperedition"] $ws2
 assign [class="kitty" instance="kitty"]                       $ws3
+assign [class="Alacritty" instance="Alacritty"]               $ws3
 assign [class="Pcmanfm"]                                      $ws4
 assign [instance="thunar" class="Thunar"]                     $ws4
 assign [instance="ranger"]                                    $ws4
 assign [instance="zathura"]                                   $ws5
 
 assign [instance="Navigator" class="localhost"]               $ws6
-assign [class="microsoft teams - preview"]                 $ws7
+assign [class="microsoft teams - preview"]                    $ws7
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class="jetbrains-idea"] focus
 for_window [class="Code"] focus
 for_window [class="kitty" instance="kitty"] focus
+for_window [class="Alacritty" instance="Alacritty"] focus
 for_window [instance="Navigator"] focus
 for_window [class="Pcmanfm"] focus
 for_window [class="Thunar"] focus
@@ -158,8 +160,8 @@ bindsym XF86MonBrightnessUp exec light -A 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $term # -e zsh -c "neofetch && zsh"
-bindsym $mod+$alt+Return exec $term --class currentws # -e zsh -c "neofetch && zsh"
+bindsym $mod+Return exec $TERMINAL # -e zsh -c "neofetch && zsh"
+bindsym $mod+$alt+Return exec $TERMINAL --class currentws # -e zsh -c "neofetch && zsh"
 
 # kill focused window
 bindsym $mod+q kill
@@ -251,9 +253,9 @@ bindsym $mod+z exec "firefox-developer-edition --no-remote -P localhost --new-wi
 bindsym $mod+n exec /usr/bin/thunar
 bindsym $mod+$alt+n exec "/usr/bin/thunar --class=currentws"
 
-bindsym $mod+F1 exec $term --name ranger -e ranger
-bindsym $mod+$alt+F1 exec $term --name currentws -e ranger
-bindsym $mod+F2 exec $term --name calendar -e calcurse
+bindsym $mod+F1 exec $TERMINAL --class ranger -e ranger
+bindsym $mod+$alt+F1 exec $TERMINAL --class currentws -e ranger
+bindsym $mod+F2 exec $TERMINAL --class calendar -e calcurse
 bindsym $mod+F3 exec idea
 bindsym $mod+F4 exec code
 

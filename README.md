@@ -15,7 +15,7 @@ To install clone this repository in your home directory and...
   #### From Endeavour or other arch base distro  
   1) Install the packages from the `community` and `aur` package lists. You can run the this command to install the whole list:
   ``
-  sudo pacman -S --needed - < community
+  sudo paru -S --needed - < community
   ``
   2) Symlink the needed modules from the dotfiles folder with stow.
 
