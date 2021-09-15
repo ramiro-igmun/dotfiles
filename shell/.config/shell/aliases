@@ -3,12 +3,12 @@
 # Alias to use lsd app to colorize the output
 alias ls="exa --color-scale --icons --sort=name --sort=type"
 alias lst="ls --tree"
-alias l="ls -l"
-alias lt="ls -l --tree"
+alias l="ls -l --no-user"
+alias lt="ls -l --tree --no-user"
 alias la="ls -a"
 alias lat="ls -a --tree"
-alias ll="ls -la"
-alias llt="ls -la --tree"
+alias ll="ls -la --no-user"
+alias llt="ls -la --tree --no-user"
 
 alias cd..="cd .."
 alias cls="clear"

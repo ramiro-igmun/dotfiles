@@ -5,11 +5,15 @@ export BROWSER=firefox-developer-edition
 export TERMINAL=alacritty
 export VISUAL=nvim
 export EDITOR=nvim
+
+# Miscellaneous
 export FZF_DEFAULT_COMMAND='find . -type f'
-export PAGER=less
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Add the directory with the scripts to exec jetbrains apps to the path
 export PATH=$PATH:/home/ramiro/.config/JetBrains
 
+# An extra space after the icons for exa, when using the terminus font,
+# comment these variables when using a different font
+export EXA_ICON_SPACING=2
 export RANGER_DEVICONS_SEPARATOR='  '
