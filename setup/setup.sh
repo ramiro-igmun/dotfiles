@@ -48,8 +48,6 @@ rm .bashrc .bash_profile
 cd $HOME/dotfiles && stow shell && stow starship && stow xorg && stow fontconfig && stow i3 && stow kitty && stow nvim
 cd
 
-source $HOME/.bashrc
-
 # Completions for fnm
 # mkdir -p $HOME/.config/shell/completions
 # touch $HOME/.config/shell/completions/_fnm
@@ -57,7 +55,9 @@ fnm completions --shell zsh > $HOME/.config/shell/completions/_fnm
 
 # Set tearfree option for amd gpu driver
 sudo cp $HOME/dotfiles/setup/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+# Set the keyboard layout in X
 sudo cp $HOME/dotfiles/setup/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+# Set the localization variables
 sudo cp $HOME/dotfiles/setup/locale.conf /etc/locale.conf
 
 # Enable services

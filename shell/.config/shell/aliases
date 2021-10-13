@@ -1,7 +1,7 @@
 #!usr/bin/env bash
 
 # Alias to use lsd app to colorize the output
-alias ls="exa --color-scale --icons --sort=name --sort=type"
+alias ls="exa --color-scale --icons --sort=name --sort=type --git"
 alias lst="ls --tree"
 alias l="ls -l --no-user"
 alias lt="ls -l --tree --no-user"
@@ -13,10 +13,12 @@ alias llt="ls -la --tree --no-user"
 alias cd..="cd .."
 alias cls="clear"
 
-alias rm="rm -i"
-alias mv="mv -i"
+alias rm="rm -vI"
+alias mv="mv -iv"
+alias cp="cp -iv"
 
 alias vi="nvim"
+alias vim="nvim"
 
 # Git aliases
 alias g="git"
