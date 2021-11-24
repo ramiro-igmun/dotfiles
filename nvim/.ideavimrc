@@ -1,0 +1,10 @@
+source ~/.config/nvim/init.vim
+
+set ideajoin
+set surround
+let mapleader = ' '
+
+" Idea exclusive keymaps
+nmap <leader>h :action PreviousTab<CR>
+nmap <leader>l :action NextTab<CR>
+nmap <leader>cl :action CloseEditor<CR>

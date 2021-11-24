@@ -83,6 +83,8 @@ From the [Arch Wiki](https://wiki.archlinux.org/title/i3#Automatically_switch_ho
     ```
 
 ### ** TODO **
-- Bitwarden dmenu client??
+- pacman setup: parallel downloads, eyecandy, extra repositories
+- hosts setup: dont leave it empty...
+- Clean home directory (move as many configuration files as possible to .config directory with env variables)
 - Arch maintenance functions (orphan packages etc.)
-- Microcode -> systemd 
+- Microcode -> systemd

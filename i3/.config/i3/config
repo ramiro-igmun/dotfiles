@@ -29,6 +29,9 @@ smart_borders no_gaps
 # Don't change focus on hover
 focus_follows_mouse no
 
+# # On a high dpi screen this forces the dpi to 96x96
+# exec --no-startup-id xrandr --dpi 96
+
 # remapSuper script: remap the Caslock to Super key (i3wm uses a lot Super key) 
 exec --no-startup-id "setxkbmap -option caps:super"
 
