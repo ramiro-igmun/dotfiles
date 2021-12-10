@@ -29,6 +29,7 @@ alias gc="g commit -m"
 alias grs="g restore --staged"
 alias gp="g push"
 alias gpl="g pull"
+alias gg="git log --all --decorate --oneline --graph"
 
 alias cat="bat"
 alias grep="grep --color=auto"
