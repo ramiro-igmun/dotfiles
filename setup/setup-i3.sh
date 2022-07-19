@@ -9,6 +9,14 @@ sudo systemctl enable --now NetworkManager
 # Upgrade system
 sudo pacman -Syu
 
+# Install paru
+git clone https://aur.archlinux.org/paru.git
+chmod 777 paru
+cd paru
+makepkg -si
+cd ..
+rm -r paru
+
 # Install package list
 paru -S --needed - < "$PACKAGE_LIST"
 

@@ -32,8 +32,6 @@ mlocate
 mtools
 neofetch
 neovim
-nerd-fonts-fira-code
-nerd-fonts-hack
 networkmanager
 network-manager-applet
 networkmanager-openvpn
@@ -45,7 +43,6 @@ pipewire-jack
 pipewire-pulse
 ranger
 reflector
-reflector-simple
 ripgrep
 sof-firmware
 starship

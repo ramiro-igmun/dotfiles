@@ -23,16 +23,8 @@ echo root:password | chpasswd
 # Upgrade system
 pacman -Syu
 
-# Install paru
-git clone https://aur.archlinux.org/paru.git
-chmod 777 paru
-cd paru
-makepkg -si
-cd ..
-rm -r paru
-
 # Install package list
-paru -S --needed - < "$PACKAGE_LIST"
+pacman -S --needed - < "$PACKAGE_LIST"
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
