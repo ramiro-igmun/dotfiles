@@ -69,8 +69,8 @@ exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id picom -b --experimental-backends
 
 # Set background
-# exec --no-startup-id ~/.fehbg
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id ~/.fehbg
+# exec --no-startup-id nitrogen --restore
 
 #set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -96,17 +96,17 @@ set $ws10 "10"
 # where you have to replace display name when needed
 # you can get from xrandr command
 # COMMENT WHEN IN SINGLE MONITOR
-workspace $ws1 output HDMI-A-0
-workspace $ws2 output HDMI-A-0
-workspace $ws3 output HDMI-A-0
-workspace $ws4 output HDMI-A-0
-workspace $ws5 output HDMI-A-0
+workspace $ws1 output HDMI-0
+workspace $ws2 output HDMI-0
+workspace $ws3 output HDMI-0
+workspace $ws4 output HDMI-0
+workspace $ws5 output HDMI-0
 
-workspace $ws6 output eDP
-workspace $ws7 output eDP
-workspace $ws8 output eDP
-workspace $ws9 output eDP
-workspace $ws10 output eDP
+workspace $ws6 output DVI-I-1
+workspace $ws7 output DVI-I-1
+workspace $ws8 output DVI-I-1
+workspace $ws9 output DVI-I-1
+workspace $ws10 output DVI-I-1
 
 # bind program to workspace and focus to them on startup:
 assign [class="jetbrains-idea"]                               $ws1
@@ -251,10 +251,10 @@ bindsym $mod+w exec "firefox-developer-edition -P dev-edition-default"
 bindsym $mod+$alt+w exec "firefox-developer-edition -P dev-edition-default --class=currentws"
 bindsym $mod+z exec "firefox-developer-edition --no-remote -P localhost --new-window localhost:4200 --class=localhost"
 
-# bindsym $mod+n exec /usr/bin/pcmanfm
-# bindsym $mod+$alt+n exec "/usr/bin/pcmanfm --class=currentws"
-bindsym $mod+n exec /usr/bin/thunar
-bindsym $mod+$alt+n exec "/usr/bin/thunar --class=currentws"
+bindsym $mod+n exec /usr/bin/pcmanfm
+bindsym $mod+$alt+n exec "/usr/bin/pcmanfm --class=currentws"
+# bindsym $mod+n exec /usr/bin/thunar
+# bindsym $mod+$alt+n exec "/usr/bin/thunar --class=currentws"
 
 bindsym $mod+F1 exec $TERMINAL --class ranger -e ranger
 bindsym $mod+$alt+F1 exec $TERMINAL --class currentws -e ranger
@@ -278,6 +278,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit-menu
 bindsym $mod+Shift+e exec ~/.config/i3/scripts/shutdown_menu -p rofi -c
+# lock-screen
+bindsym $mod+Shift+f exec ~/.config/i3/scripts/blur-lock.sh
 
 # START DMENU
 # bindsym $mod+d exec --no-startup-id dmenu_run
@@ -351,7 +353,7 @@ client.urgent             $urgentred  $urgentred   $white     $urgentred  $urgen
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    font pango:sans 10
+    font pango:monospace 10
     position top
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
     tray_output primary

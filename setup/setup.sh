@@ -25,10 +25,10 @@ cd ..
 sudo rm -r paru
 
 # Install package list
-paru -S --needed - < "$PACKAGE_LIST"
+yay -S --needed - < "$PACKAGE_LIST"
 
 # Install package list
-paru -S --needed - < "$AUR"
+yay -S --needed - < "$AUR"
 
 # Change shell to zsh
 chsh -s /bin/zsh
@@ -38,7 +38,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Give permissions to light executable to be able to control backlight
-sudo chmod +s /usr/bin/light
+# sudo chmod +s /usr/bin/light
 
 # Install fnm node version manager
 curl -fsSL https://fnm.vercel.app/install | bash
@@ -54,7 +54,7 @@ cd
 fnm completions --shell zsh > $HOME/.config/shell/completions/_fnm
 
 # Set tearfree option for amd gpu driver
-sudo cp $HOME/dotfiles/setup/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
+# sudo cp $HOME/dotfiles/setup/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
 # Set the keyboard layout in X
 sudo cp $HOME/dotfiles/setup/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
 # Set the localization variables
