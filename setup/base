@@ -15,6 +15,7 @@ efibootmgr
 exa
 firewalld
 fzf
+git
 grub
 gvfs
 gvfs-smb
