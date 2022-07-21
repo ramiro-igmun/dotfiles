@@ -25,7 +25,7 @@ chsh -s /bin/zsh
 
 # prepare shell and stow basic configs
 rm .bashrc .bash_profile
-cd $HOME/dotfiles && stow shell && stow starship && stow xorg && stow fontconfig && stow i3 && stow kitty && stow nvim
+cd $HOME/dotfiles && stow shell && stow starship && stow xorg && stow fontconfig && stow i3 && stow kitty && stow nvim && stow ranger
 cd
 
 # Set tearfree option for amd gpu driver

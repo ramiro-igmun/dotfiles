@@ -13,9 +13,8 @@ firefox-developer-edition
 i3-gaps
 i3blocks
 i3lock
-inxi
+# inxi
 jq
-keyserver-rank
 light
 lvm2
 lxappearance-gtk3
@@ -30,8 +29,8 @@ pcmanfm-gtk3
 picom
 polkit-gnome
 poppler-glib
-pulseaudio
-pulseaudio-alsa
+# pulseaudio
+# pulseaudio-alsa
 python-pillow
 rofi
 scrot
@@ -40,8 +39,6 @@ terminus-font-ll2-td1-ttf
 ttf-dejavu
 ttf-fira-code
 ttf-liberation
-virtualbox-guest-modules-arch
-virtualbox-guest-utils
 wget
 whois
 xfsprogs
