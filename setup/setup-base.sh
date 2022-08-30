@@ -3,6 +3,7 @@
 # Partition and formatted disks, generated fstab
 
 PACKAGE_LIST=~/dotfiles/setup/base
+PATH="$(dirname "$(realpath "$0")")"
 
 # Set local time
 printf "\e[1;35mSetting up time and localization\n\e[0m"
@@ -41,6 +42,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Install neovim plugin manager
+# TODO move this out of base setup
 printf "\e[1;35mInstalling neovim plugin manager...\n\e[0m"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -49,12 +51,14 @@ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 # sudo chmod +s /usr/bin/light
 
 # Install fnm node version manager
+# TODO move this out of base setup
 printf "\e[1;35mInstalling fnm node manager...\n\e[0m"
 curl -fsSL https://fnm.vercel.app/install | bash
 
 # Completions for fnm
 # mkdir -p $HOME/.config/shell/completions
 # touch $HOME/.config/shell/completions/_fnm
+# TODO move this out of base setup
 fnm completions --shell zsh > $HOME/.config/shell/completions/_fnm
 
 # Enable services
