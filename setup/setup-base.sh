@@ -1,9 +1,18 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 # Before running this script you must have finished this steps and have NOT rebooted
-# Partition and formatted disks, generated fstab
+# Partition and formatted disks
+# 1) gdisk -> generate efi partition with 300M -> generate root partition with xG -> generate home partition if needed
+# 2) format the disks -> mkfs.vfat for efi partition -> mkfs.ext4 for the rest
+# 3) mount the drives:
+#    mount /dev/{root} /mnt
+#    mkdir -p /mnt/boot
+#    mount /dev/{efi} /mnt/boot
+#    mount others
+#    mount others
+# Generated fstab
 
-PACKAGE_LIST=~/dotfiles/setup/base
-PATH="$(dirname "$(realpath "$0")")"
+PACKAGE_LIST=/dotfiles/setup/base
+PATH=/dotfiles/setup
 
 # Set local time
 printf "\e[1;35mSetting up time and localization\n\e[0m"
@@ -17,7 +26,7 @@ locale-gen
 echo "KEYMAP=es" >> /etc/vconsole.conf
 
 # Set the localization variables
-cp $HOME/dotfiles/setup/locale.conf /etc/locale.conf
+cp $PATH/locale.conf /etc/locale.conf
 
 # Set the hosts
 printf "\e[1;35mSetting up hosts...\n\e[0m"
@@ -41,26 +50,6 @@ printf "\e[1;35mSetting up grub...\n\e[0m"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Install neovim plugin manager
-# TODO move this out of base setup
-printf "\e[1;35mInstalling neovim plugin manager...\n\e[0m"
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-# Give permissions to light executable to be able to control backlight
-# sudo chmod +s /usr/bin/light
-
-# Install fnm node version manager
-# TODO move this out of base setup
-printf "\e[1;35mInstalling fnm node manager...\n\e[0m"
-curl -fsSL https://fnm.vercel.app/install | bash
-
-# Completions for fnm
-# mkdir -p $HOME/.config/shell/completions
-# touch $HOME/.config/shell/completions/_fnm
-# TODO move this out of base setup
-fnm completions --shell zsh > $HOME/.config/shell/completions/_fnm
-
 # Enable services
 printf "\e[1;35mEnabling services...\n\e[0m"
 systemctl enable NetworkManager
@@ -74,8 +63,6 @@ systemctl enable acpid
 systemctl enable paccache.timer
 systemctl enable fstrim.timer
 systemctl enable reflector.timer
-
-# TODO install sdkman / autoinstall nvim plugins on init.vim
 
 printf "\e[1;35mSetting up user...\n\e[0m"
 useradd -m ramiro
