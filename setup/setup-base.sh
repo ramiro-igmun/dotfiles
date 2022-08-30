@@ -5,14 +5,14 @@
 # 2) format the disks -> mkfs.vfat for efi partition -> mkfs.ext4 for the rest
 # 3) mount the drives:
 #    mount /dev/{root} /mnt
-#    mkdir -p /mnt/boot
+#    mkdir -p /mnt/boot/efi
 #    mount /dev/{efi} /mnt/boot
 #    mount others
 #    mount others
 # Generated fstab
 
-PACKAGE_LIST=/dotfiles/setup/base
-PATH=/dotfiles/setup
+PATH_BASE="$(dirname "$(realpath "$0")")"
+PACKAGE_LIST=$PATH_BASE/dotfiles/setup/base
 
 # Set local time
 printf "\e[1;35mSetting up time and localization\n\e[0m"
@@ -26,7 +26,7 @@ locale-gen
 echo "KEYMAP=es" >> /etc/vconsole.conf
 
 # Set the localization variables
-cp $PATH/locale.conf /etc/locale.conf
+cp $PATH_BASE/locale.conf /etc/locale.conf
 
 # Set the hosts
 printf "\e[1;35mSetting up hosts...\n\e[0m"
