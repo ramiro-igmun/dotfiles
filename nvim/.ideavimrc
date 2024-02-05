@@ -1,10 +1,13 @@
-source ~/.config/nvim/init.vim
+source ~/.config/nvim/idea.vim
 
 set ideajoin
 set surround
+set commentary
 let mapleader = ' '
 
 " Idea exclusive keymaps
 nmap <leader>h :action PreviousTab<CR>
 nmap <leader>l :action NextTab<CR>
 nmap <leader>cl :action CloseEditor<CR>
+nmap <C-o> :action Back<CR>
+nmap gi :action GotoImplementation<CR>
