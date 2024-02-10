@@ -47,4 +47,7 @@ map <A-j> <C-w>J
 map <A-k> <C-w>K
 map <A-l> <C-w>L
 
+vnoremap J :action MoveLineDown<CR>
+vnoremap K :action MoveLineUp<CR>
+
 filetype plugin on
